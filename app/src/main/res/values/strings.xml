@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Puzzle</string>
+    <string name="success">恭喜通关！！</string>
+    <string name="next">解锁新关卡成功！！</string>
+    <string name="restart">重新开始？</string>
+    <string name="ok">确定</string>
+    <string name="exit">退出</string>
+    <string name="complete">你是天才，恭喜通关！！</string>
+    <string name="tips">Tips</string>
+</resources>
