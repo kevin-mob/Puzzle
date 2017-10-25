@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <cn.kevin.card.drag.PuzzleLayout
+    <cn.kevin.puzzle.PuzzleLayout
         android:id="@+id/activity_swipe_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    </cn.kevin.card.drag.PuzzleLayout>
+    </cn.kevin.puzzle.PuzzleLayout>
 
     <ImageView
         android:id="@+id/iv_tips"
