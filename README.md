@@ -4,6 +4,7 @@ Android puzzle game.
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
  简单的安卓拼图游戏，内部滑动通过ViewDragHelper实现。
+ 
  Simple Android puzzle game, internal sliding through ViewDragHelper implementation.
 
 ## 预览 Preview
