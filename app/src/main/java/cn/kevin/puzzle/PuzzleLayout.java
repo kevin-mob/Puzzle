@@ -139,16 +139,16 @@ public class PuzzleLayout extends RelativeLayout {
             public void onViewReleased(View releasedChild, float xvel, float yvel) {
                 Log.d(TAG, "xvel " + xvel + " yvel " + yvel);
                 int index = indexOfChild(releasedChild);
-                boolean isCompleted = mHelper.swapValueWithWhite(index);
+                boolean isCompleted = mHelper.swapValueWithInvisibleModel(index);
                 Block item =  mHelper.getModel(index);
                 viewDragHelper.settleCapturedViewAt(item.hPosition * mItemWidth, item.vPosition * mItemHeight);
-                View whiteView = getChildAt(0);
-                ViewGroup.LayoutParams layoutParams = whiteView.getLayoutParams();
-                whiteView.setLayoutParams(releasedChild.getLayoutParams());
+                View invisibleView = getChildAt(0);
+                ViewGroup.LayoutParams layoutParams = invisibleView.getLayoutParams();
+                invisibleView.setLayoutParams(releasedChild.getLayoutParams());
                 releasedChild.setLayoutParams(layoutParams);
                 invalidate();
                 if(isCompleted){
-                    whiteView.setVisibility(VISIBLE);
+                    invisibleView.setVisibility(VISIBLE);
                     mOnCompleteCallback.onComplete();
                 }
             }
@@ -167,10 +167,8 @@ public class PuzzleLayout extends RelativeLayout {
     }
 
     @Override
-    public void computeScroll()
-    {
-        if(viewDragHelper.continueSettling(true))
-        {
+    public void computeScroll() {
+        if(viewDragHelper.continueSettling(true)) {
             invalidate();
         }
     }
@@ -224,17 +222,17 @@ public class PuzzleLayout extends RelativeLayout {
 
     public void randomOrder(){
         int num = mSquareRootNum * mSquareRootNum * 8;
-        View whiteView = getChildAt(0);
+        View invisibleView = getChildAt(0);
         View neighbor;
         for (int i = 0; i < num; i ++){
-            int neighborPosition = mHelper.findNeighborIndexOfWhite();
-            ViewGroup.LayoutParams whiteLp = whiteView.getLayoutParams();
+            int neighborPosition = mHelper.findNeighborIndexOfInvisibleModel();
+            ViewGroup.LayoutParams invisibleLp = invisibleView.getLayoutParams();
             neighbor = getChildAt(neighborPosition);
-            whiteView.setLayoutParams(neighbor.getLayoutParams());
-            neighbor.setLayoutParams(whiteLp);
-            mHelper.swapValueWithWhite(neighborPosition);
+            invisibleView.setLayoutParams(neighbor.getLayoutParams());
+            neighbor.setLayoutParams(invisibleLp);
+            mHelper.swapValueWithInvisibleModel(neighborPosition);
         }
-        whiteView.setVisibility(INVISIBLE);
+        invisibleView.setVisibility(INVISIBLE);
     }
 
     public void setOnCompleteCallback(OnCompleteCallback onCompleteCallback){

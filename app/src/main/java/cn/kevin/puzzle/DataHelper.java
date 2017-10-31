@@ -47,29 +47,29 @@ class DataHelper {
     /**
      * 将索引出的model的值与空白model的值互换。
      */
-    boolean swapValueWithWhite(int index){
+    boolean swapValueWithInvisibleModel(int index){
         Block formModel = models.get(index);
-        Block whiteModel = models.get(0);
-        swapValue(formModel, whiteModel);
+        Block invisibleModel = models.get(0);
+        swapValue(formModel, invisibleModel);
         return isCompleted();
     }
 
     /**
      * 交换两个model的值
      */
-    private void swapValue(Block formModel, Block whiteModel) {
+    private void swapValue(Block model, Block invisibleModel) {
 
-        int position = formModel.position;
-        int hPosition = formModel.hPosition;
-        int vPosition = formModel.vPosition;
+        int position = model.position;
+        int hPosition = model.hPosition;
+        int vPosition = model.vPosition;
 
-        formModel.position = whiteModel.position;
-        formModel.hPosition = whiteModel.hPosition;
-        formModel.vPosition = whiteModel.vPosition;
+        model.position = invisibleModel.position;
+        model.hPosition = invisibleModel.hPosition;
+        model.vPosition = invisibleModel.vPosition;
 
-        whiteModel.position = position;
-        whiteModel.hPosition = hPosition;
-        whiteModel.vPosition = vPosition;
+        invisibleModel.position = position;
+        invisibleModel.hPosition = hPosition;
+        invisibleModel.vPosition = vPosition;
     }
 
     /**
@@ -105,9 +105,9 @@ class DataHelper {
     /**
      * 随机查询出空白位置周围的一个model的索引。
      */
-    public int findNeighborIndexOfWhite() {
-        Block whiteBlock = models.get(0);
-        int position = whiteBlock.position;
+    public int findNeighborIndexOfInvisibleModel() {
+        Block invisibleModel = models.get(0);
+        int position = invisibleModel.position;
         int x = position % squareRootNum;
         int y = position / squareRootNum;
         int direction = new Random(System.nanoTime()).nextInt(4);
@@ -126,11 +126,11 @@ class DataHelper {
                 if(y != squareRootNum - 1)
                     return getIndexByCurrentPosition(position + squareRootNum);
         }
-        return findNeighborIndexOfWhite();
+        return findNeighborIndexOfInvisibleModel();
     }
 
     /**
-     * 获取索引出model的可移动方向，不能移动返回 -1。
+     * 获取索引处model的可移动方向，不能移动返回 -1。
      */
     int getScrollDirection(int index){
 
@@ -146,22 +146,22 @@ class DataHelper {
          */
         int x = position % squareRootNum;
         int y = position / squareRootNum;
-        int whiteModelPosition = models.get(0).position;
+        int invisibleModelPosition = models.get(0).position;
 
         /*
          * 判断当前位置是否可以移动，如果可以移动就return可移动的方向。
          */
 
-        if(x != 0 && whiteModelPosition == position - 1)
+        if(x != 0 && invisibleModelPosition == position - 1)
             return L;
 
-        if(x != squareRootNum - 1 && whiteModelPosition == position + 1)
+        if(x != squareRootNum - 1 && invisibleModelPosition == position + 1)
             return R;
 
-        if(y != 0 && whiteModelPosition == position - squareRootNum)
+        if(y != 0 && invisibleModelPosition == position - squareRootNum)
             return T;
 
-        if(y != squareRootNum - 1 && whiteModelPosition == position + squareRootNum)
+        if(y != squareRootNum - 1 && invisibleModelPosition == position + squareRootNum)
             return B;
 
         return N;
