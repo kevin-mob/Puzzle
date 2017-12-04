@@ -10,6 +10,9 @@ Android puzzle game.
 ## 预览 Preview
 ![](demo.gif)
 
+
+附上实现步骤 [http://www.jianshu.com/p/8613c748aaaf](http://www.jianshu.com/p/8613c748aaaf) 
+
 License
 --------
 
