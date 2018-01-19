@@ -5,7 +5,7 @@ Android puzzle game.
 
  简单的安卓拼图游戏，内部滑动通过ViewDragHelper实现。
 
- Simple Android puzzle game, internal sliding through ViewDragHelper implementation.
+ Simple Android puzzle game, internal sliding is ViewDragHelper implementation.
 
 ## 预览 Preview
 ![](demo.gif)
